@@ -40,3 +40,15 @@ def add_book():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+@app.route('/delete/<int:id>')
+def delete_book(id):
+    # 指定されたIDの本をデータベースから探す
+    book_to_delete = Book.query.get_or_404(id)
+    
+    try:
+        db.session.delete(book_to_delete) # 削除の準備
+        db.session.commit()                # データベースに反映
+        return redirect(url_for('index'))
+    except:
+        return "削除中にエラーが発生しました"

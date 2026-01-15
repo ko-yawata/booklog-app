@@ -31,6 +31,12 @@
                 <th>著者</th>
                 <th>評価</th>
                 <th>感想</th>
+                <th>操作</th> <td>{{ book.review }}</td>
+<td>
+    <a href="{{ url_for('delete_book', id=book.id) }}" 
+       class="btn btn-danger btn-sm" 
+       onclick="return confirm('本当に削除しますか？')">削除</a>
+</td>
             </tr>
         </thead>
         <tbody>
